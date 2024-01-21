@@ -10,7 +10,7 @@ router.post("/create", (req, res) => {
 
   movieService.create(newMovie);
 
-  res.send("Movie must be created");
+  res.redirect("/");
 });
 
 module.exports = router;
