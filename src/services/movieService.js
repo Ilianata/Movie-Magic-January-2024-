@@ -14,9 +14,7 @@ const movies = [
   },
 ];
 
-exports.getAll = () => {
-  return movies.slice();
-};
+exports.getAll = () => Movie.find();
 
 exports.getOne = (movieId) => {
   const movie = movies.find((movie) => movie._id == movieId);
@@ -43,6 +41,4 @@ exports.search = (title, genre, year) => {
   return result;
 };
 
-exports.create = (movieData) => {
-  Movie.create(movieData);
-};
+exports.create = (movieData) => Movie.create(movieData);
