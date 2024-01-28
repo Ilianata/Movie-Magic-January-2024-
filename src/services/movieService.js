@@ -6,24 +6,20 @@ exports.getAll = () => Movie.find();
 exports.getOne = (movieId) => Movie.findById(movieId).populate("casts");
 
 //TODO: filter reult in mongoDB
-exports.search = async (title, genre, year) => {
-  let result = await Movie.find().lean();
+exports.search = (title, genre, year) => {
+  let query = {};
 
   if (title) {
-    result = result.filter((movie) =>
-      movie.title.toLowerCase().includes(title.toLowerCase())
-    );
+    query.title = new RegExp(title, "i");
   }
   if (genre) {
-    result = result.filter(
-      (movie) => movie.genre.toLowerCase() === genre.toLowerCase()
-    );
+    query.genre = genre.toLowerCase();
   }
   if (year) {
-    result = result.filter((movie) => movie.year === year);
+    query.year = year;
   }
 
-  return result;
+  return Movie.find(query);
 };
 
 exports.create = (movieData) => Movie.create(movieData);
