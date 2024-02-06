@@ -36,3 +36,5 @@ exports.attach = async (movieId, castId) => {
 
   // Movie.findByIdAndUpdate(movieId, { $push: { casts: castId } });
 };
+
+exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
