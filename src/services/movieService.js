@@ -23,6 +23,8 @@ exports.search = (title, genre, year) => {
 };
 
 exports.create = (movieData) => Movie.create(movieData);
+exports.edit = (movieId, movieData) =>
+  Movie.findByIdAndUpdate(movieId, movieData);
 
 exports.attach = async (movieId, castId) => {
   const movie = await this.getOne(movieId);
