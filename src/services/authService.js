@@ -15,7 +15,6 @@ exports.register = async (userData) => {
 
 exports.login = async (email, password) => {
   const user = await User.findOne({ email });
-  console.log(user);
 
   if (!user) {
     throw new Error("Cannot find email or password!");
