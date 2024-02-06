@@ -6,11 +6,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
+});
+
+userSchema.virtual("rePassword").set(function (value) {
+  if (value !== this.password) {
+    throw new mongoose.MongooseError("Password missmatch!");
+  }
 });
 
 userSchema.pre("save", async function (next) {
