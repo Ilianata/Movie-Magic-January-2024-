@@ -25,7 +25,7 @@ router.get("/movies/:movieId", async (req, res) => {
   const movie = await movieService.getOne(movieId).lean();
   // const casts = await castService.getByIds(movie.casts).lean();
   movie.rating = new Array(Number(movie.rating)).fill(true);
-  res.render("details", { movie });
+  res.render("movie/details", { movie });
 });
 
 router.get("/movies/:movieID/attach", isAuth, async (req, res) => {
