@@ -33,7 +33,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     maxLength: 1000,
-    match: /^[a-zA-Z0-9 ]$/,
+    match: /^[a-zA-Z0-9 ]+$/,
   },
   image: {
     type: String,
