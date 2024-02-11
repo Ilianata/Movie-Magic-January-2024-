@@ -28,11 +28,16 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  const token = await authService.login(email, password);
+  try {
+    const token = await authService.login(email, password);
 
-  res.cookie("auth", token);
+    res.cookie("auth", token);
 
-  res.redirect("/");
+    res.redirect("/");
+  } catch (err) {
+    const message = getErrorMesage(err);
+    res.status(400).render("auth/login", { error: message });
+  }
 });
 
 router.get("/logout", (req, res) => {
